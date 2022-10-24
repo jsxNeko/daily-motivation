@@ -1,0 +1,51 @@
+.introduction-section div {
+	font-size: 30px;
+	position: absolute;
+	transform: translate(-50%,-50%);
+	top: 50%;
+	left: 50%;
+	opacity: 0;
+	text-align: center;
+}
+
+#first-intro {
+	animation: fade 3s linear forwards;
+}
+
+#second-intro {
+	animation: fade 3s linear forwards;
+	animation-delay: 3s;
+}
+
+#third-intro {
+	animation: fade 5s linear forwards;
+	animation-delay: 6s;
+}
+
+#fourth-intro {
+	animation: fadeIn 2s linear forwards;
+	animation-delay: 11s;
+}
+
+.btn-continue-introduction {
+	background-color: rgba(0,0,0,0);
+	border: 1px solid #fff;
+	color: #fff;
+}
+
+.btn-continue-introduction:hover {
+	border: 1px solid #fff;
+	background-color: #fff;
+	color: #000;
+}
+
+
+@keyframes fade {
+	0%, 100% {opacity: 0}
+	50% {opacity: 1}
+}
+
+@keyframes fadeIn {
+	0% {opacity: 0}
+	100% {opacity: 1}
+}
