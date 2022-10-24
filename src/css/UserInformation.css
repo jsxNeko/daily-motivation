@@ -1,17 +1,10 @@
-.userInformationSection {
+#userInformationSection {
 	text-align: center;
 	font-size: 30px;
 	position: absolute;
 	transform: translate(-50%,-50%);
 	top: 50%;
 	left: 50%;
-}
-
-#name {
-	width: 50vw;
-	background-color: rgba(0,0,0,0);
-	border: 1px solid #fff;
-	color: white;
 }
 
 #note-name {

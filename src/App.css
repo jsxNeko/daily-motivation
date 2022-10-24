@@ -2,3 +2,23 @@ body {
   background-color: #9eb4e7;
   color: #fff;
 }
+
+#name,
+#mood {
+  width: 45vw;
+  background-color: rgba(0,0,0,0);
+  border: 1px solid #fff;
+  color: white;
+}
+
+.btn-transparent {
+  background-color: rgba(0,0,0,0);
+  border: 1px solid #fff;
+  color: #fff;
+}
+
+.btn-transparent:hover {
+  border: 1px solid #fff;
+  background-color: #fff;
+  color: #000;
+}

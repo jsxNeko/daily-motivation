@@ -14,7 +14,7 @@ const Introduction = () => {
 			<div id="third-intro">Let's get you motivated to continue your day.</div>
 			<div id="fourth-intro">
 				<p>Start by telling me a little about how you are feeling right now.</p>
-				<button className="btn btn-lg btn-continue-introduction rounded-5" onClick={() => navigate('get-started')}>Continue</button>
+				<button className="btn btn-lg btn-transparent rounded-5" onClick={() => navigate('get-started')}>Continue</button>
 			</div>
 		</section>
 	);

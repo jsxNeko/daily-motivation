@@ -3,6 +3,8 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const UserInformation = () => {
+	const navigate = useNavigate();
+
 	// Check if user already has a username entered previously
 	// If not then give a empty name until user enters a value
 	const [ name, setName ] = useState(localStorage.getItem('username') ? 
@@ -17,10 +19,11 @@ const UserInformation = () => {
 		localStorage.setItem('username', JSON.stringify(name));
 
 		// Navigate to next page
+		navigate('/profile');
 	};
 
 	return(
-		<section className="userInformationSection">
+		<section id="userInformationSection">
 			<form>
 				<div>
 					<label htmlFor="name">What would you like to be called?</label>
@@ -34,7 +37,7 @@ const UserInformation = () => {
 				</div>
 				<div>
 					<button 
-					className="btn btn-lg btn-continue-introduction rounded-5 mt-4 mb-4"
+					className="btn btn-lg btn-transparent rounded-5 mt-4 mb-4"
 					onClick={(e) => saveName(e)}
 					>Next</button>
 					<p id="note-name">
