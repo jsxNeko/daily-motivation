@@ -1,12 +1,18 @@
 import '../css/Home.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import ColorThemes from '../data/ColorThemes';
 
 const Home = () => {
-	const [ color, setColor ] = useState("#9eb4e7");
+	// Check if user has previously selected a color
+	// If not, select the default background color
+	const [ color, setColor ] = useState(localStorage.getItem("background") ? 
+										JSON.parse(localStorage.getItem("background")) :
+										'#9eb4e7');
 
 	const changeTheme = (c) => {
 		setColor(c);
-		document.body.style.backgroundColor = c;
+		localStorage.setItem("background", JSON.stringify(c));
+		document.body.style.backgroundColor = JSON.parse(localStorage.getItem("background"));
 	};
 
 	return(
@@ -14,9 +20,20 @@ const Home = () => {
 			<div className="home-grid">
 				<div className="home-item">
 					<p>Change color theme:</p>
-					<button className="btn btn-light me-3 p-3 rounded-5" onClick={() => changeTheme("#000")} style={{backgroundColor: "#000"}}></button>
-					<button className="btn btn-light p-3 rounded-5" onClick={() => changeTheme("orange")} style={{backgroundColor: "orange"}}></button><br/>
-					<button className="btn btn-light mt-3 rounded-5" onClick={() => changeTheme("#9eb4e7")}>Default</button>
+					{
+						// Loop through ColorThemes JSON and return color picker buttons
+						ColorThemes.background.map(c => {
+							if(c.color) {
+								return(
+									<button className="btn btn-light me-3 p-3 rounded-5" onClick={() => changeTheme(c.color)} style={{backgroundColor: c.color}}></button>
+								);
+							} else {
+								return(
+									<><br/><button className="btn btn-light mt-3 rounded-5" onClick={() => changeTheme(c.default)}>Default</button></>
+								);
+							}
+						})
+					}
 				</div>
 				<div className="home-item">
 					<div>
