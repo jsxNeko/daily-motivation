@@ -26,10 +26,10 @@ const UserInformation = () => {
 		<section id="userInformationSection">
 			<form>
 				<div>
-					<label htmlFor="name">What would you like to be called?</label>
+					<label htmlFor="name-input">What would you like to be called?</label>
 					<input 
 					className="form-control mt-3" 
-					id="name" 
+					id="name-input" 
 					type="text"
 					value={name}
 					onChange={(e) => setName(e.target.value)}
