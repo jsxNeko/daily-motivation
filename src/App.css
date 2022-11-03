@@ -1,14 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Darker+Grotesque&family=Shrikhand&display=swap');
+
 body {
-  background-color: #9eb4e7;
+  background-color: #0E0B16;
+  color: #E7DFDD;
+  font-family: 'Darker Grotesque', sans-serif;
+}
+
+.App {
+  padding: 25px 25px 25px 25px;
+}
+
+.popover {
+  font-family: 'Darker Grotesque', sans-serif;
+}
+
+body, 
+html,
+button {
+  cursor: none !important;
+  overflow: hidden;
+}
+
+h1,h2,
+h3,h4,
+h5 {
+  color: #E7DFDD;
+  text-transform: capitalize;
+}
+
+hr {
+  opacity: 1;
+  border: 1px solid #fff;
+  max-width: 100%;
+}
+
+.pos-absolute {
+  position: absolute;
+}
+
+.pos-fixed {
+  position: fixed;
+}
+
+.center-of-screen {
+  transform: translate(-50%,-50%);
+  top: 50%;
+  left: 50%;
+}
+
+.btn-theme-1 {
+  border: 0;
+  background-color: #D90429;
   color: #fff;
 }
 
-#name,
-#mood {
-  width: 45vw;
-  background-color: rgba(0,0,0,0);
-  border: 1px solid #fff;
-  color: white;
+.text-color,
+.text-color:focus {
+  color: #fff;
 }
 
 .btn-transparent {
@@ -21,4 +69,148 @@ body {
   border: 1px solid #fff;
   background-color: #fff;
   color: #000;
+}
+
+.center-block {
+  display: block;
+  margin: 0 auto;
+}
+
+.bi-quote {
+  color: #D90429;
+  font-size: 80px;
+}
+
+.loader {
+  position: absolute;
+  border: 10px dotted #fff;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 3s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.custom-cursor {
+  position: absolute;
+  z-index: 99999;
+}
+
+.popover-header {
+  color: #fff;
+  background-color: #0d0d0d;
+}
+
+.popover-body {
+  color: #fff;
+  background-color: #1a1a1a;
+}
+
+#QuoteContainer :not(p) {
+  font-family: 'Abril Fatface', cursive;
+}
+
+#QuoteContainer p {
+  float: right;
+}
+
+#name-input,
+#name-change-input {
+  background-color: rgba(0,0,0,0);
+  border: 1px solid #fff;
+}
+
+#submit-name-change {
+  background-color: rgba(0,0,0,0);
+  border: 1px solid #fff;
+  right: 20px;
+  top: 172px;
+}
+
+#submit-name-change:hover {
+  color: #000;
+  background: #fff;
+}
+
+.f-22 {
+  font-size: 22px;
+}
+
+#userInformationSection,
+#homeContainer,
+#QuoteContainer,
+#introductionSection div {
+  font-size: 30px;
+}
+
+#note {
+  font-style: italic;
+}
+
+#settingsWidget {
+  min-height: 500px;
+  right: 25px;
+}
+
+#musicWidget {
+  right: 25px;
+  top: 70px;
+}
+
+#introductionSection div {
+  position: absolute;
+  transform: translate(-50%,-50%);
+  top: 50%;
+  left: 50%;
+  opacity: 0;
+  text-align: center;
+}
+
+#introductionSection div:nth-child(1) {
+  animation: fade 3s linear forwards;
+}
+
+#introductionSection div:nth-child(2) {
+  animation: fade 3s linear forwards;
+  animation-delay: 3s;
+}
+
+#introductionSection div:nth-child(3) {
+  animation: fade 5s linear forwards;
+  animation-delay: 6s;
+}
+
+#introductionSection div:nth-child(4) {
+  animation: fadeIn 2s linear forwards;
+  animation-delay: 11s;
+}
+
+.fadeInAnimation {
+  animation: fadeIn 2s linear forwards;
+}
+
+@keyframes fade {
+  0%, 100% {opacity: 0}
+  50% {opacity: 1}
+}
+
+@keyframes fadeIn {
+  0% {opacity: 0}
+  100% {opacity: 1}
+}
+
+@media screen and (max-width: 768px) {
+  .bi-quote {
+    font-size: 50px;
+  }
+  #QuoteContainer p {
+    float: unset;
+  }
+  .custom-cursor {
+    display: none !important;
+  }
 }
