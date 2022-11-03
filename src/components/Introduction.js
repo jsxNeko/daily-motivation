@@ -1,21 +1,37 @@
-import '../css/Introduction.css';
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const Introduction = () => {
 	const navigate = useNavigate();
+
+	useEffect(() => {
+		// If user has a username already then skip the introductions
+		localStorage.getItem("username") 
+		&&
+		setTimeout(() => {
+			navigate("/planning-your-day");
+		}, 3000);
+	},[]);
+
 	return(
-		<section className="introduction-section">
-			<div id="first-intro">Hello :)</div>
-			<div id="second-intro">
-				Good Morning<br/>
-				Buen Dia<br/>
-				Guten Morgen<br/>
+		<section className="text-color" id="introductionSection">
+			<div>Hello {localStorage.getItem("username") && 
+				JSON.parse(localStorage.getItem("username"))+ " Welcome Back"} :)
 			</div>
-			<div id="third-intro">Let's get you motivated to continue your day.</div>
-			<div id="fourth-intro">
-				<p>Start by telling me a little about how you are feeling right now.</p>
-				<button className="btn btn-lg btn-transparent rounded-5" onClick={() => navigate('get-started')}>Continue</button>
-			</div>
+			{ !localStorage.getItem("username") &&
+				<>
+				<div>
+					Good Morning<br/>
+					Guten Morgen<br/>
+					Buen Dia<br/>
+				</div>
+				<div>Let's get you started to continue your day.</div>
+				<div>
+					<p>Start by telling me your name</p>
+					<button className="btn btn-lg btn-dark btn-theme-1 rounded-5" onClick={() => navigate("/get-started")}>Continue</button>
+				</div>
+				</>
+			}
 		</section>
 	);
 };
