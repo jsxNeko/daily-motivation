@@ -11,3 +11,5 @@ Created with ReactJS and Vanilla CSS.
 
 Rest API - https://api-ninjas.com/api/quotes, https://goquotes.docs.apiary.io/
 
+ICO - <a href="https://iconscout.com/icons/milky" target="_blank">Milky Icon</a> by <a href="https://iconscout.com/contributors/twitter-inc">Twitter Emoji</a> on <a href="https://iconscout.com">IconScout</a>
+
