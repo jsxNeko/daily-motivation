@@ -8,5 +8,6 @@ get you thinking and moving. As for those working remote, this would benefit
 a lot as you can play music and take in the perfect quote that was chosen.
 
 Created with ReactJS and Vanilla CSS.
-Rest API - api super ninja
+
+Rest API - https://api-ninjas.com/api/quotes, https://goquotes.docs.apiary.io/
 
