@@ -1,12 +1,16 @@
-import { useEffect } from 'react';
+import { useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Store } from './Store';
 
 const Introduction = () => {
 	const navigate = useNavigate();
 
+	const { state, dispatch: ctxDispatch } = useContext(Store);
+	const { username } = state;
+
 	useEffect(() => {
 		// If user has a username already then skip the introductions
-		localStorage.getItem("username") 
+		username 
 		&&
 		setTimeout(() => {
 			navigate("/planning-your-day");
@@ -15,10 +19,10 @@ const Introduction = () => {
 
 	return(
 		<section className="text-color" id="introductionSection">
-			<div>Hello {localStorage.getItem("username") && 
-				JSON.parse(localStorage.getItem("username"))+ " Welcome Back"} :)
+			<div>Hello {username && 
+				username + " Welcome Back"} :)
 			</div>
-			{ !localStorage.getItem("username") &&
+			{ !username &&
 				<>
 				<div>
 					Good Morning<br/>

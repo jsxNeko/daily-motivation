@@ -1,28 +1,37 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { toast } from 'react-toastify';
+import { Store } from './Store';
 
 const NameChange = () => {
-	const [ name, setName ] = useState(localStorage.getItem("username") ? 
-							JSON.parse(localStorage.getItem("username")) : 
-							"");
+	const { state, dispatch: ctxDispatch } = useContext(Store);
+	const { username, storeUser } = state;
 
-	const [ remember, setRemember ] = useState(localStorage.getItem("username") ? 
-									true : false);
+	const [ name, setName ] = useState(username);
+	const [ remember, setRemember ] = useState(storeUser);
 
 	const handleSubmit = (e) => {
 		// Prevent submit button from refreshing page
 		e.preventDefault();
 
-		// Set user's username to localStorage if user chose to be remembered
-		if(remember) {
-			localStorage.setItem("username", JSON.stringify(name));
-			sessionStorage.removeItem('username');
-		} else {
-			sessionStorage.setItem("username", JSON.stringify(name));
-			localStorage.removeItem("username");
+		// Set user's username to local if want to be remembered
+		try {
+			ctxDispatch({
+				type: 'USER',
+				payload: {
+						"username": name,
+						"storeUser": remember 
+						},
+			});
+			if(remember) {
+				localStorage.setItem("username", JSON.stringify(name));	
+			} else {
+				sessionStorage.setItem("username", JSON.stringify(name));
+				localStorage.removeItem("username");
+			}
+			toast.success("Name changed successfully")
+		} catch (error) {
+			toast.error("Something went wrong. Please try again later or report the problem.");
 		}
-		toast.success("Name successfully updated!");
-		setTimeout(() => {window.location.reload()},4000);
 	};
 
 	return(

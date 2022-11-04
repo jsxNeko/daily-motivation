@@ -1,37 +1,51 @@
-import { useState } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Store } from './Store';
+import { toast } from 'react-toastify';
 import PickTheme from './PickTheme';
 
 const EnterUserInformation = () => {
 	const navigate = useNavigate();
 
-	// Check if user already has a username entered previously
-	// If not then give a empty name until user enters a value
-	const [ name, setName ] = useState(localStorage.getItem("username") ? 
-							JSON.parse(localStorage.getItem("username")) : 
-							"");
+	const { state, dispatch: ctxDispatch } = useContext(Store);
+	const { username } = state;
+
+	const [ name, setName ] = useState("Guest");
 	const [ remember, setRemember ] = useState(false);
 
 	const handleSubmit = (e) => {
 		// Prevent submit button from refreshing page
 		e.preventDefault();
 
-		// Set user's username to localStorage if user wants to be remembered
-		if(remember) {
-			localStorage.setItem("username", JSON.stringify(name));
-		} else {
-			sessionStorage.setItem("username", JSON.stringify(name));
-			localStorage.removeItem("username");
+		// Set user's username
+		try {
+			ctxDispatch({
+				type: 'USER',
+				payload: {
+						"username": name,
+						"storeUser": remember 
+						},
+			});
+			if(remember) {
+				localStorage.setItem("username", JSON.stringify(name));	
+			} else {
+				sessionStorage.setItem("username", JSON.stringify(name));
+				localStorage.removeItem("username");
+			}
+			// If everything works out, navigate to homepage
+			navigate("/planning-your-day");	
+		} catch (error) {
+			toast.error("Something went wrong. Please try again later or report the problem.");
 		}
-
-		// Navigate to next page
-		navigate("/planning-your-day");
 	};
+
+	useEffect(() => {
+	},[username])
 
 	return(
 		<section className="center-of-screen text-color pos-absolute text-center" id="userInformationSection">
 			<form onSubmit={handleSubmit}>
-				<div classNam="text-color">
+				<div className="text-color">
 					<label htmlFor="name-input">What would you like to be called?</label>
 					<input 
 					className="text-color form-control rounded-5 mt-3" 

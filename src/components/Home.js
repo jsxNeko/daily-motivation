@@ -1,13 +1,17 @@
-import { useState } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Store } from './Store';
 import Settings from './Settings';
 import Music from './Music';
 
 const Home = () => {
-	const [ mood, setMood ] = useState('');
-	const [ name, setName ] = useState(localStorage.getItem("username") ? JSON.parse(localStorage.getItem("username")) : JSON.parse(sessionStorage.getItem("username")));
 	const navigate = useNavigate();
 
+	const { state, dispatch: ctxDispatch } = useContext(Store);
+	const { username } = state;
+
+	const [ mood, setMood ] = useState("");
+	
 	const customStyles = {
 		control: (base,state) => ({
 			...base,
@@ -51,13 +55,16 @@ const Home = () => {
 		});
 	};
 
+	useEffect(() => {
+	},[]);
+
 	return(
 		<section id="homeSection">
 			<Settings/>
 			<Music/>
 			<div className="container pos-absolute center-of-screen fadeInAnimation" id="homeContainer">
 				<div className="text-center">
-					<h2>Hi <em>{name}</em>, What's your goal for the day? To be.. </h2>
+					<h2>Hi <em>{username}</em>, What's your goal for the day? To be.. </h2>
 					<button 
 					type="button" 
 					className="btn btn-light btn-lg rounded-5 me-2"
