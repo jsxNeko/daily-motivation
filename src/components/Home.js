@@ -68,7 +68,7 @@ const Home = () => {
 					<button 
 					type="button" 
 					className="btn btn-light btn-lg rounded-5 me-2"
-					disabled={mood === "Motivated"}
+					disabled
 					onClick={e => setMood(e.target.innerText)}>Motivated</button>
 					<button 
 					type="button" 

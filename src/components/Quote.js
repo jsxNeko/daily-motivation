@@ -17,7 +17,7 @@ const Quote = () => {
 		const fetchData = async () => {
 			try {
 				let response = await axios.get(`https://api.api-ninjas.com/v1/quotes?category=Inspirational`,
-					{headers: {"X-Api-Key": process.env.REACT_APIKEY},
+					{headers: {"X-Api-Key": process.env.REACT_APP_APIKEY},
 				});
 				setQuote(response.data[0].quote);
 				setAuthor(response.data[0].author);
