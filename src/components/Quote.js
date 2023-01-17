@@ -16,17 +16,11 @@ const Quote = () => {
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
-				if(type === "Inspirational") {
-					let response = await axios.get(`https://api.api-ninjas.com/v1/quotes?category=Inspirational`,
-						{headers: {"X-Api-Key": process.env.REACT_APIKEY},
-					});
-					setQuote(response.data[0].quote);
-					setAuthor(response.data[0].author);
-				} else {
-					let response = await axios.get(`https://goquotes-api.herokuapp.com/api/v1/random/1?type=tag&val=motivational`);
-					setQuote(response.data.quotes[0].text);
-					setAuthor(response.data.quotes[0].author);
-				}
+				let response = await axios.get(`https://api.api-ninjas.com/v1/quotes?category=Inspirational`,
+					{headers: {"X-Api-Key": process.env.REACT_APIKEY},
+				});
+				setQuote(response.data[0].quote);
+				setAuthor(response.data[0].author);
 				setLoading(false);
 			} catch(error) {
 				alert(error);
